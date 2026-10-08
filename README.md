@@ -10,6 +10,18 @@ Atlas is a cloud observability and system monitoring platform built using FastAP
 - Real-time CPU Monitoring
 - Memory Usage Tracking
 - Disk Usage Monitoring
+- Health Monitoring
+- Real-Time CPU Metrics
+- Memory Metrics
+- Metrics History
+- SQLite Persistence
+- Swagger Documentation
+
+Tech Stack
+- FastAPI
+- SQLAlchemy
+- SQLite
+- Psutil
 
 ## Current Endpoints
 
