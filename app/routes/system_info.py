@@ -1,14 +1,15 @@
 from fastapi import APIRouter
-import platform
+from app.models.system_info import SystemInfoResponse
+from app.services.system_info import get_system_info
 
 router = APIRouter()
 
-@router.get("/system-info")
+@router.get(
+    "/system-info",
+    tags=["System"],
+    summary="Get system information",
+    description="Returns platform and processor information.",
+    response_model=SystemInfoResponse
+)
 def system_info():
-
-    return {
-        "system": platform.system(),
-        "release": platform.release(),
-        "machine": platform.machine(),
-        "processor": platform.processor()
-    }
+    return get_system_info()

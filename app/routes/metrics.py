@@ -1,14 +1,12 @@
 from fastapi import APIRouter
-import psutil
+from app.services.metrics_store import get_metrics
+from app.models.metrics import MetricsResponse
 
-router = APIRouter()
+router = APIRouter(tags=["Metrics"])
 
-
-@router.get("/metrics")
-def get_metrics():
-
-    return {
-        "cpu": psutil.cpu_percent(),
-        "memory": psutil.virtual_memory().percent,
-        "disk": psutil.disk_usage('/').percent
-    }
+@router.get(
+    "/metrics",
+    response_model=MetricsResponse
+)
+def metrics():
+    return get_metrics()

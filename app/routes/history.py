@@ -1,14 +1,14 @@
 from fastapi import APIRouter
+from typing import List
 
-router = APIRouter()
+from app.models.history import HistoryItem
+from app.services.history import get_history
 
-sample_history = [
-    {"time": "10:00", "cpu": 15},
-    {"time": "10:01", "cpu": 22},
-    {"time": "10:02", "cpu": 18},
-    {"time": "10:03", "cpu": 35},
-]
+router = APIRouter(tags=["History"])
 
-@router.get("/history")
-def get_history():
-    return sample_history
+@router.get(
+    "/history",
+    response_model=List[HistoryItem]
+)
+def history():
+    return get_history()
